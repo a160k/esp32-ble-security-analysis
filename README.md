@@ -28,6 +28,20 @@ Rather than serving as a functional "spam tool", this project documents low-leve
 
 ---
 
+## 🔍 Comparative Analysis & Related Work
+
+To understand the boundaries of BLE security research, this project evaluates two distinct paradigms in the open-source community:
+
+1. **Software-Defined Advertising Floods (e.g., [tobozo/ESP32-BLEBeaconSpam](https://github.com/tobozo/ESP32-BLEBeaconSpam)):**
+   - **Approach:** Relies purely on brute-force advertising packet generation using standard ESP32 BLE stacks.
+   - **Limitation:** Fails against modern OS mitigations (iOS rate-limiting, Android ECC verification) as unauthenticated packets are dropped at the driver/protocol level.
+
+2. **Hybrid Hardware RF Generators (e.g., [CiferTech nRFBox](https://www.hackster.io/CiferTech/esp32-powered-tool-to-scan-jam-spoof-ble-wi-fi-nrfbox-96b516)):**
+   - **Approach:** Expands ESP32 capability using external 2.4GHz transceivers (nRF24L01) to perform physical layer (PHY) RF noise generation and multi-protocol spoofing.
+   - **Limitation:** While effective at disrupting physical radio signal quality (PHY noise), external transceivers still cannot bypass cryptographic authentication or OS-level pop-up suppression logic once packets reach the target device's Bluetooth stack.
+
+---
+
 ## [?] OS-Level Security Mitigations & Findings
 
 RF spectrum analysis conducted via **nRF Connect for Mobile** verified that the ESP32 successfully broadcasts valid raw RF packets and rotates MAC addresses in real-time (~300 ms interval, -57 dBm RSSI). However, target operating systems deliberately ignore these packets due to modern security protocols:
