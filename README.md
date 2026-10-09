@@ -28,7 +28,7 @@ Rather than serving as a functional "spam tool", this project documents low-leve
 
 ---
 
-## 🔍 Comparative Analysis & Related Work
+## Comparative Analysis & Related Work
 
 To understand the boundaries of BLE security research, this project evaluates two distinct paradigms in the open-source community:
 
